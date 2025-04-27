@@ -1,0 +1,60 @@
+﻿@using PlastikMVC.Client.Models.Response.ProductResponse
+@model GetProductByIdResponse
+
+@section head {
+    <title>@($"Plastik - {Model.Name}")</title>
+
+    @if (Model.MetaTags != null)
+    {
+        <meta name="title" content="@Model.MetaTags.Title" />
+        <meta name="description" content="@Model.MetaTags.Description" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="@Model.MetaTags.OpenGraphUrl" />
+        <meta property="og:title" content="@Model.MetaTags.OpenGraphTitle" />
+        <meta property="og:description" content="@Model.MetaTags.Description" />
+        <meta property="og:image" content="@Model.MetaTags.OpenGraphImage" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="@Model.MetaTags.TwitterUrl" />
+        <meta property="twitter:title" content="@Model.MetaTags.TwitterTitle" />
+        <meta property="twitter:description" content="@Model.MetaTags.TwitterDescription" />
+        <meta property="twitter:image" content="@Model.MetaTags.TwitterImage" />
+    }
+
+    <!-- CSS dosyasının yolu -->
+    <link rel="stylesheet" href="~/css/product-detail.css">
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="product-detail-card text-center">
+                <h2 class="mb-4">@Model.Name</h2>
+
+                <div id="mainImage" class="product-detail-image mb-4" style="background-image:url('@Model.PreviewImageUrl')"></div>
+
+                <p class="text-muted"><strong>Açıklama:</strong> @Model.Description</p>
+                <h4 class="text-primary"><strong>Fiyat:</strong> @Model.Price.ToString("C")</h4>
+
+                <!-- Küçük resimler galerisi -->
+                @if (Model.Images?.Any() == true)
+                {
+                    <div class="product-detail-gallery d-flex justify-content-center flex-wrap">
+                        @foreach (var image in Model.Images)
+                        {
+                            <img src="@image.ImageUrl" alt="@image.AltText" class="thumbnail-image m-2" data-src="@image.ImageUrl">
+                        }
+                    </div>
+                }
+
+                <a href="/" class="btn btn-warning mt-4">Ana Sayfaya Dön</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript Dosyasını Dahil Et -->
+<script src="~/js/product-detail.js"></script>

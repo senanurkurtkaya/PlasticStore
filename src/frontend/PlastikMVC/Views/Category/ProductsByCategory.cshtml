@@ -1,0 +1,89 @@
+﻿@using PlastikMVC.Client.Models.Response.ProductResponse
+@model List<GetProductsByCategoryIdResponse>
+
+@if (Model != null && Model.Any())
+{
+
+    <head>
+        <link rel="stylesheet" href="~/css/product-detail.css" asp-append-version="true">
+
+
+    </head>
+
+    <head>
+        <script src="~/js/product-list.js" asp-append-version="true" defer></script>
+    </head>
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <input type="text" id="searchBox" class="form-control" placeholder="Search products...">
+            </div>
+
+        </div>
+        <div class="row" id="productContainer">
+            @foreach (var product in Model)
+            {
+
+
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                    <div class="product-item bg-light mb-4">
+                        <div class="product-img position-relative overflow-hidden">
+                            @if (!string.IsNullOrEmpty(product.PreviewImageUrl))
+                            {
+                                <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.Id">
+                                    <div data-image-src="@product.PreviewImageUrl" style="background-image: url('@product.PreviewImageUrl'); background-size: cover; width: 100%; height:180px;"></div>
+                                </a>
+                            }
+                            else
+                            {
+                                <div class="text-center text-muted" style="height: 180px;text-align: center;display: flex;justify-content: center;align-items: center;">
+                                    <h3>Görsel Yok</h3>
+                                </div>
+                            }
+                        </div>
+                        <div class="text-center py-4">
+                            <!-- Ürün adını tıklanamaz yapmak için <span> etiketi kullanıldı -->
+                            <span class="h6 text-truncate d-block">
+                                <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.Id">
+                                    @product.Name
+                                </a>
+                            </span>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <h5>@(product.Price) TL</h5>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <p class="text-muted">Stok Miktarı: @product.StockQuantity.ToString()</p>
+                            </div>
+
+                            <p>@product.Description</p>
+                            <!-- Detay Butonu -->
+                            <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.Id" class="btn btn-primary mt-2">
+                                Detay
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Image Preview Modal -->
+    <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="previewModalLabel">Image Preview</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="previewImage" src="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p class="text-center text-muted">No products found in this category.</p>
+}
+

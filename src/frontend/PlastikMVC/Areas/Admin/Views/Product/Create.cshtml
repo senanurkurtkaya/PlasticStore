@@ -1,0 +1,81 @@
+﻿@using PlastikMVC.Client.Models.Request.ProductRequest
+@model CreateProductRequest
+@{
+    ViewBag.Title = "Yeni Ürün Ekle";
+    var categories = ViewBag.Categories as List<PlastikMVC.Client.Models.Response.CategoryResponse.GetAllCategoryResponse>;
+}
+
+
+<h1 class="text-center my-4 display-4">Yeni Ürün Ekle</h1>
+
+<div class="container">
+    
+
+    <form asp-area="Admin"  asp-action="Create" method="post" class="border p-4 rounded-4 shadow-sm bg-body-tertiary" enctype="multipart/form-data">
+        <!-- Ürün Adı -->
+        <div class="form-group mb-3">
+            <label for="Name" class="form-label">Ürün Adı</label>
+            <input type="text" id="Name" name="Name" class="form-control" placeholder="Ürün adı giriniz" required />
+        </div>
+
+        <!-- Açıklama -->
+        <div class="form-group mb-3">
+            <label for="Description" class="form-label">Açıklama</label>
+            <input type="text" id="Description" name="Description" class="form-control" placeholder="Açıklama giriniz"
+                   required oninvalid="this.setCustomValidity('Lütfen açıklama alanını doldurunuz.')"
+                   oninput="this.setCustomValidity('')" />
+        </div>
+        <div class="form-group mb-3">
+            <label for="ProductImages" class="form-label">Ürün Adı</label>
+            <input type="file" id="ProductImages" name="ProductImages" class="form-control" placeholder="Ürün resmi seçiniz" required />
+        </div>
+
+        <!-- Fiyat -->
+        <div class="form-group mb-3">
+            <label for="Price" class="form-label">Fiyat</label>
+            <input type="number" id="Price" name="Price" step="0.01" class="form-control" placeholder="Fiyat giriniz" required />
+        </div>
+
+        <!-- Kategori -->
+        <div class="form-group mb-3">
+            <label for="CategoryId" class="form-label">Kategori</label>
+            <select id="CategoryId" name="CategoryId" class="form-select" required>
+                <option value="" selected disabled>Kategori seçiniz</option>
+                @if (ViewBag.Categories != null)
+                {
+                    foreach (var category in ViewBag.Categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <!-- Stok Miktarı -->
+        <div class="form-group mb-3">
+            <label for="StockQuantity" class="form-label">Stok Miktarı</label>
+            <input type="number" id="StockQuantity" name="StockQuantity" class="form-control" placeholder="Stok miktarı giriniz" required />
+        </div>
+
+        <!-- Ürün Durumu (Aktif Mi?) -->
+        <div class="form-group mb-3">
+            <label class="form-label">Aktif Mi?</label>
+            <div class="form-check">
+                <input type="radio" id="IsActiveYes" name="IsActive" value="true" class="form-check-input" required />
+                <label for="IsActiveYes" class="form-check-label">Evet</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" id="IsActiveNo" name="IsActive" value="false" class="form-check-input" required />
+                <label for="IsActiveNo" class="form-check-label">Hayır</label>
+            </div>
+        </div>
+
+        <!-- Butonlar -->
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" class="btn btn-primary px-4">Kaydet</button>
+            <a asp-action="Index" class="btn btn-secondary px-4">Geri</a>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-oBqDVmMz4fnFO9gybXjWVvDxJ98n0SCbz8NcXUqU9p2F5WcC5z9AKd8X9NfBZLgF" crossorigin="anonymous"></script>

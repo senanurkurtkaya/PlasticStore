@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Erişim Engellendi";
+}
+
+<div class="container mt-5 d-flex justify-content-center align-items-center" style="height: 70vh;">
+    <div class="card shadow-lg border-0 text-center" style="max-width: 600px; border-radius: 15px;">
+        <div class="card-body p-4">
+            <div class="text-danger mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-shield-exclamation" viewBox="0 0 16 16">
+                    <path d="M5.071 0c-.686 0-1.388.248-1.885.7a2.614 2.614 0 0 0-.625.87c-.252.488-.39 1.12-.39 1.77v4.748c0 .792.21 1.519.59 2.088.392.589.91 1.04 1.44 1.3.746.354 1.648.553 2.649.553h.018c1.007 0 1.908-.196 2.646-.545a3.193 3.193 0 0 0 1.455-1.321 4.68 4.68 0 0 0 .568-2.049V3.34c0-.648-.13-1.233-.373-1.678a2.591 2.591 0 0 0-.612-.84A3.109 3.109 0 0 0 8.535 0h-3.464Zm-.644.895a2.014 2.014 0 0 1 1.17-.353h3.464c.348 0 .688.074.988.211.28.14.537.339.734.562.203.234.362.535.455.849.097.33.146.73.146 1.173v4.746c0 .657-.182 1.239-.474 1.683-.284.43-.65.769-1.067.96-.584.275-1.354.452-2.252.452h-.017c-.89 0-1.655-.177-2.24-.451a2.543 2.543 0 0 1-1.06-.963 3.691 3.691 0 0 1-.474-1.679V3.34c0-.46.073-.845.195-1.172a1.838 1.838 0 0 1 .436-.63Zm3.572 3.964a.5.5 0 0 0-1 0v3.667a.5.5 0 0 0 1 0V4.859Zm-.5 6.271a.746.746 0 1 0 0 1.492.746.746 0 0 0 0-1.492Z" />
+                </svg>
+            </div>
+            <h2 class="mb-3 text-danger">Erişim Engellendi</h2>
+            <p class="text-muted">Bu sayfaya erişim yetkiniz bulunmamaktadır. Eğer bu bir hata olduğunu düşünüyorsanız, lütfen sistem yöneticisi ile iletişime geçin.</p>
+            <div class="mt-4">
+                <a href="@Url.Action("Index", "Home")" class="btn btn-primary btn-lg">
+                    Ana Sayfaya Dön
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

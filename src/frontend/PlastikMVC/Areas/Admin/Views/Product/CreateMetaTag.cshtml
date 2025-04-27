@@ -1,0 +1,64 @@
+﻿@using PlastikMVC.Client.Models.Request.ProductRequest
+@model CreateProductMetaTagsRequest
+
+<div class="container">
+    <h3>@(Model.ProductId) Id'li Ürün için MetaTag Tanımla</h3>
+    <form asp-area="Admin" asp-controller="Product" asp-action="CreateMetaTag" method="post">
+        <input type="hidden" asp-for="ProductId" />
+        <div class="row">
+            <div class="col mb-3">
+                <label class="form-label" asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" />
+            </div>
+            <div class="col mb-3">
+                <label class="form-label" asp-for="Description"></label>
+                <input asp-for="Description" class="form-control" />
+            </div>
+            <div class="col mb-3">
+                <label class="form-label" asp-for="OpenGraphTitle"></label>
+                <input asp-for="OpenGraphTitle" class="form-control" />
+            </div>
+            <div class="col mb-3">
+                <label class="form-label" asp-for="OpenGraphDescription"></label>
+                <input asp-for="OpenGraphDescription" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                <label class="form-label" asp-for="OpenGraphImage"></label>
+                <input asp-for="OpenGraphImage" class="form-control" />
+            </div>
+            <div class="col mb-3">
+                <label class="form-label" asp-for="OpenGraphType"></label>
+                <input asp-for="OpenGraphType" class="form-control" />
+            </div>
+            <div class="col mb-3">
+                <label class="form-label" asp-for="OpenGraphUrl"></label>
+                <input asp-for="OpenGraphUrl" class="form-control" />
+            </div>
+            <div class="col mb-3">
+                <label class="form-label" asp-for="TwitterTitle"></label>
+                <input asp-for="TwitterTitle" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                <label class="form-label" asp-for="TwitterCard"></label>
+                <input asp-for="TwitterCard" class="form-control" />
+            </div>
+            <div class="col mb-3">
+                <label class="form-label" asp-for="TwitterImage"></label>
+                <input asp-for="TwitterImage" class="form-control" />
+            </div>
+            <div class="col mb-3">
+                <label class="form-label" asp-for="TwitterDescription"></label>
+                <input asp-for="TwitterDescription" class="form-control" />
+            </div>
+            <div class="col mb-3">
+                <label class="form-label" asp-for="TwitterUrl"></label>
+                <input asp-for="TwitterUrl" class="form-control" />
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Kaydet</button>
+    </form>
+</div>

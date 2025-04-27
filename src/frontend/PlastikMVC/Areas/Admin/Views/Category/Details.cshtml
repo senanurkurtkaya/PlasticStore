@@ -1,0 +1,63 @@
+﻿@using PlastikMVC.Client.Models.Response.CategoryResponse
+@model GetCategoryByIdResponse
+
+@{
+    ViewData["Title"] = $"{Model.Name} Detayları";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-4">
+    <h1 class="text-center my-4 display-4">@Model.Name Detayları</h1>
+    <hr />
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th class="w-25">Kategori ID</th>
+                    <td>@Model.Id</td>
+                </tr>
+                <tr>
+                    <th>Kategori Adı</th>
+                    <td>@Model.Name</td>
+                </tr>
+                <tr>
+                    <th>Açıklama</th>
+                    <td>
+                        @if (string.IsNullOrWhiteSpace(Model.Description))
+                        {
+                            <span class="text-muted">Açıklama bulunmamaktadır.</span>
+                        }
+                        else
+                        {
+                            @Model.Description
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <th>Stock Quantity</th>
+                    <td>@Model.StockQuantity</td>
+                </tr>
+                <tr>
+                    <th>Oluşturulma Tarihi</th>
+                    <td>@Model.CreatedDate.ToString("dd MMM yyyy")</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card-footer text-center">
+            <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning me-2">
+                <i class="fas fa-edit"></i> Düzenle
+            </a>
+            <a asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger me-2" onclick="return confirm('Bu kategoriyi silmek istediğinize emin misiniz?');">
+                <i class="fas fa-trash"></i> Sil
+            </a>
+            <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Geri
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

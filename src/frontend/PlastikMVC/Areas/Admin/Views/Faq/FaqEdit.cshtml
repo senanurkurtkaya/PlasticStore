@@ -1,0 +1,41 @@
+﻿@using PlastikMVC.Client.Models.Request.FaqRequest
+@model UpdateFaqRequest
+
+@{
+    ViewData["Title"] = "SSS Düzenle";
+    var categories = ViewBag.FaqCategories;
+}
+
+<header class="bg-warning py-4 text-white text-center">
+    <h2>
+        <a asp-area="Admin" asp-controller="Faq" asp-action="FaqIndex" class="text-white text-decoration-none">
+            SSS Düzenle
+        </a>
+    </h2>
+</header>
+
+<div class="container mt-4">
+    <form asp-controller="Faq" asp-action="FaqUpdate" asp-route-id="@Model.Id" method="post">
+        <input type="hidden" asp-for="Id">
+        <div class="mb-3">
+            <label for="question" class="form-label">Soru</label>
+            <input type="text" class="form-control" id="question" asp-for="Question" required>
+        </div>
+        <div class="mb-3">
+            <label for="answer" class="form-label">Cevap</label>
+            <textarea class="form-control" id="answer" asp-for="Answer" rows="4" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="categoryId" class="form-label">Kategori</label>
+            <select class="form-control" id="categoryId" asp-for="CategoryId" required>
+                <option>Kategori Seçin</option>
+                @foreach (var category in categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="fas fa-edit"></i> Güncelle</button>
+        <a asp-area="Admin" asp-controller="Faq" asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+    </form>
+</div>

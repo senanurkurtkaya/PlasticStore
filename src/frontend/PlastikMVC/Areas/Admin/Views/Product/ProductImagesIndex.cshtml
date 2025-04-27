@@ -1,0 +1,67 @@
+﻿@using PlastikMVC.Models.Product
+@model IEnumerable<ProductImageViewModel>
+@{
+    ViewData["Title"] = "Ürün Resimleri Yönetimi";
+    var productId = ViewBag.ProductId;
+}
+@section head {
+    <link href="~/css/product-images-index.css" rel="stylesheet" />
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">Ürün Resimleri Yönetimi</h2>
+    <hr />
+
+    @if (TempData["AddProductImageSuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["AddProductImageSuccessMessage"]</div>
+    }
+    @if (TempData["AddProductImageErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["AddProductImageErrorMessage"]</div>
+    }
+    @if (ViewBag.InfoMessage != null)
+    {
+        <div class="alert alert-warning">@ViewBag.InfoMessage</div>
+    }
+
+    <div class="text-end">
+        <a href="@($"/Admin/Product/{productId}/CreateProductImage")" class="btn btn-success">
+            <i class="fas fa-plus"></i> Yeni Resim Ekle
+        </a>
+    </div>
+
+    @if (Model != null)
+    {
+      
+
+        <div class="row">
+            @foreach (var image in Model)
+            {
+                <div class="col-lg-4 card-wrapper">
+                    <div class="card">
+                        <div class="card-image-wrapper">
+                            <img src="@image.ImageUrl" class="card-img-top" alt="@image.AltText">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@image.AltText</h5>
+                            <ul>
+                                <li>ProductId: @image.ProductId</li>
+                                <li>ImageUrl: @image.ImageUrl</li>
+                                <li>IsPreviewImage: @(image.IsPreviewImage ? "Evet" : "Hayır")</li>
+                            </ul>
+                            <a href="@($"/Admin/Product/{productId}/UpdateProductImage/{image.Id}")" class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i> Düzenle
+                            </a>
+                            <form asp-action="DeleteProductImage" asp-route-productId="@productId" asp-route-imageId="@image.Id" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bu resmi silmek istediğinizden emin misiniz?');">
+                                    <i class="fas fa-trash"></i> Sil
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

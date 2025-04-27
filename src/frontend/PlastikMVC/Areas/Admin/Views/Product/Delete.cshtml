@@ -1,0 +1,35 @@
+﻿@using PlastikMVC.Dtos.ProductDto
+@model ProductDto
+
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h1 class="text-center text-danger">Ürünü Sil</h1>
+        <p class="text-center fs-5">Bu ürünü silmek istediğinizden emin misiniz?</p>
+
+        <div class="mt-4">
+            <dl class="row">
+                <dt class="col-sm-3 fw-bold">Ad:</dt>
+                <dd class="col-sm-9">@Model.Name</dd>
+
+                <dt class="col-sm-3 fw-bold">Fiyat:</dt>
+                <dd class="col-sm-9">@Model.Price.ToString("C")</dd>
+            </dl>
+        </div>
+
+        <div class="d-flex justify-content-center mt-4">
+            <form asp-action="Delete" method="post" class="me-2">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <button type="submit" class="btn btn-danger btn-lg">
+                    <i class="fas fa-trash-alt"></i> Sil
+                </button>
+            </form>
+            <a asp-action="Index" class="btn btn-secondary btn-lg">
+                <i class="fas fa-arrow-left"></i> Vazgeç
+            </a>
+        </div>
+    </div>
+</div>

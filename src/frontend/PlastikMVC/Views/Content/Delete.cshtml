@@ -1,0 +1,44 @@
+﻿@model PlastikMVC.AllDtos.ContentDtos.ContentDeleteDto
+
+@{
+    ViewData["Title"] = "İçeriği Sil";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-body text-center">
+                    <h3 class="text-danger">Dikkat!</h3>
+                    <p class="lead">Bu içeriği silmek istediğinizden emin misiniz?</p>
+
+                    <hr>
+
+                    <h5>@Model.Title</h5>
+                    <p><strong>Özet:</strong> @Model.Summary</p>
+                    <p><strong>Kaynak:</strong> @Model.ContentSource</p>
+                    <p><strong>Planlanan Yayınlanma Tarihi:</strong> @Model.ScheduledPublishDate.ToString("dd MMMM yyyy")</p>
+
+                    <form asp-action="DeleteConfirmed" asp-controller="Content" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="Title" />
+                        <input type="hidden" asp-for="Body" />
+                        <input type="hidden" asp-for="Summary" />
+                        <input type="hidden" asp-for="ContentSource" />
+                        <input type="hidden" asp-for="ScheduledPublishDate" />
+
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Sil
+                        </button>
+                        <a asp-action="Index" asp-controller="Content" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> İptal
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

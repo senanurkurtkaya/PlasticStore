@@ -1,0 +1,50 @@
+﻿@using PlastikMVC.Client.Models.Response.ProductResponse
+@model ProductMetaTagsResponse
+
+<div class="container-fluid mt-4">
+    <div class="card border-0 shadow-sm w-100">
+        <div class="card-header bg-dark text-white text-center py-3">
+            <h3 class="mb-0">🔖 MetaTag Bilgileri</h3>
+        </div>
+        <div class="card-body p-4">
+            @if (Model == null)
+            {
+                <div class="alert alert-warning text-center">
+                    <i class="fas fa-exclamation-circle"></i> Bu ürün için ekstra MetaTag bilgisi eklenmemiş.
+                </div>
+                <div class="text-center">
+                    <a class="btn btn-primary" href="@($"/Admin/Product/{ViewBag.ProductId}/CreateMetaTag")">
+                        <i class="fas fa-plus"></i> Tanımla
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="text-center mb-3">
+                    <a asp-area="Admin" asp-controller="Product" asp-action="MetaTagEdit" asp-route-id="@Model.ProductId" class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Düzenle
+                    </a>
+                    <a href="@($"/Admin/Product/{ViewBag.ProductId}")" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Geri Dön
+                    </a>
+                </div>
+                <table class="table table-striped table-hover w-100">
+                    <tbody>
+                        <tr><th>Başlık</th><td>@Model.Title</td></tr>
+                        <tr><th>Açıklama</th><td>@Model.Description</td></tr>
+                        <tr><th>OpenGraph Türü</th><td>@Model.OpenGraphType</td></tr>
+                        <tr><th>OpenGraph URL</th><td>@Model.OpenGraphUrl</td></tr>
+                        <tr><th>OpenGraph Başlığı</th><td>@Model.OpenGraphTitle</td></tr>
+                        <tr><th>OpenGraph Açıklaması</th><td>@Model.OpenGraphDescription</td></tr>
+                        <tr><th>OpenGraph Resmi</th><td><img src="@Model.OpenGraphImage" class="img-fluid rounded" width="150" /></td></tr>
+                        <tr><th>Twitter Card</th><td>@Model.TwitterCard</td></tr>
+                        <tr><th>Twitter URL</th><td>@Model.TwitterUrl</td></tr>
+                        <tr><th>Twitter Başlığı</th><td>@Model.TwitterTitle</td></tr>
+                        <tr><th>Twitter Açıklaması</th><td>@Model.TwitterDescription</td></tr>
+                        <tr><th>Twitter Resmi</th><td><img src="@Model.TwitterImage" class="img-fluid rounded" width="150" /></td></tr>
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>

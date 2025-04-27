@@ -1,0 +1,49 @@
+﻿@model PlastikMVC.AllDtos.ContentDtos.ContentGetByIdDto
+
+@{
+    ViewData["Title"] = "İçerik Detayı";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">                
+                @if (!string.IsNullOrEmpty(Model.MediaUrl))
+                {
+                    <img src="@Model.MediaUrl" class="card-img-top" alt="İçerik Resmi">
+                }
+                <div class="card-body">
+                    <h3 class="card-title">@Model.Title</h3>
+                    <p class="text-muted">📅 Yayınlanma Tarihi: @Model.PublishedDate?.ToString("dd MMMM yyyy")</p>
+                    <p class="text-muted">📅 Planlanan Yayınlanma Tarihi: @Model.ScheduledPublishDate?.ToString("dd MMMM yyyy")</p>
+                    <hr>
+
+                    <p class="card-text"><strong>Özet:</strong> @Model.Summary</p>
+
+                    <hr>
+                    
+                    <p class="card-text"><strong>İçerik:</strong> @Html.Raw(Model.Body)</p>
+                    
+                    
+                    @if (!string.IsNullOrEmpty(Model.ContentSource))
+                    {
+                        <p class="mt-3"><strong>Kaynak:</strong> @Model.ContentSource</p>
+                    }
+
+                    @if (Model.IsFeatured)
+                    {
+                        <span class="badge bg-success">Öne Çıkan İçerik</span>
+                    }
+
+                    <div class="mt-4">
+                        <a href="@Url.Action("Index", "Content")" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Geri Dön
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

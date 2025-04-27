@@ -1,0 +1,39 @@
+﻿<form method="get" action="@Url.Action("Index", "CustomerService")">
+    <div class="form-group">
+        <label for="filter">Talepleri Filtrele:</label>
+        <input type="text" id="filter" name="filter" class="form-control" placeholder="Filtreleme için bir kelime girin..." />
+    </div>
+    <button type="submit" class="btn btn-primary">Filtrele</button>
+</form>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Talep No</th>
+            <th>Talep Açıklaması</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.Id</td>
+                <td>@request.Description</td>
+                <td>@request.Status</td>  
+                <td>
+                    <form method="post" asp-controller="CustomerService" asp-action="UpdateStatus">
+                        <input type="hidden" name="requestId" value="@request.Id" />
+                        <select name="newStatus" class="form-select">
+                            <option value="Beklemede">Beklemede</option>
+                            <option value="İşlemde">İşlemde</option>
+                            <option value="Tamamlandı">Tamamlandı</option>
+                        </select>
+                        <button type="submit" class="btn btn-success">Güncelle</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

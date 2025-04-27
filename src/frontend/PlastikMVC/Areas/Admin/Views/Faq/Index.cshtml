@@ -1,0 +1,64 @@
+﻿@using PlastikMVC.Client.Models.Response.FaqResponse
+@model List<GetAllFaqResponse>
+
+@{
+    ViewData["Title"] = "Sıkça Sorulan Sorular Yönetimi";
+}
+
+<header class="bg-primary py-4 text-white text-center">
+    <h2>
+        <a asp-area="Admin"  asp-controller="Faq" asp-action="FaqIndex" class="text-white text-decoration-none">
+            Sıkça Sorulan Sorular Yönetimi
+        </a>
+    </h2>
+</header>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4>SSS Listesi</h4>
+        <a asp-area="Admin" asp-controller="Faq" asp-action="FaqCreate" class="btn btn-success">
+            <i class="fas fa-plus"></i> Yeni SSS Ekle
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Soru</th>
+                <th>Cevap</th>
+                <th>Kategori</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var faq in Model)
+            {
+                <tr>
+                    <td>@faq.Id</td>
+                    <td>@faq.Question</td>
+                    <td>@faq.Answer</td>
+                    <td>@faq.CategoryName</td>
+                    <td>
+                        <a asp-area="Admin" asp-controller="Faq" asp-action="FaqEdit" asp-route-id="@faq.Id" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i> Düzenle
+                        </a>
+                        <a asp-area="Admin" asp-controller="Faq" asp-action="FaqDelete" asp-route-id="@faq.Id" class="btn btn-danger btn-sm"
+                           onclick="return confirm('Bu SSS’yi silmek istediğinize emin misiniz?');">
+                            <i class="fas fa-trash"></i> Sil
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

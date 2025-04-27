@@ -1,0 +1,47 @@
+﻿@using PlastikMVC.Client.Models.Response.ProductResponse
+@model List<GetAllProductResponse>;
+
+<div class="container-fluid pt-5 pb-3">
+    <div class="row px-xl-5">
+        @if (Model != null && Model.Count > 0)
+        {
+            @foreach (var product in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                    <div class="product-item bg-light mb-4">
+                        <div class="product-img position-relative overflow-hidden">
+                            @if (!string.IsNullOrEmpty(product.PreviewImageUrl))
+                            {
+                                <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.Id">
+                                    <div data-image-src="@product.PreviewImageUrl" style="background-image: url('@product.PreviewImageUrl'); background-size: cover; width: 100%; height:180px;"></div>
+                                </a>
+                            }
+                            else
+                            {
+                                <div class="text-center text-muted" style="height: 180px;text-align: center;display: flex;justify-content: center;align-items: center;">
+                                    <h3>Görsel Yok</h3>
+                                </div>
+                            }
+                        </div>
+                        <div class="text-center py-4">
+                            <a class="h6 text-decoration-none text-truncate" asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.Id">
+                                @product.Name
+                            </a>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <h5>@(product.Price) TL</h5>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mb-1">
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small>(99)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

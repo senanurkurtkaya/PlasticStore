@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Profilim";
+}
+
+@model PlastikMVC.AllDtos.UserDtos.UserProfileModel
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>@Model.UserName</h3>
+                    <p>@Model.Email</p>
+                </div>
+                <div class="card-body">
+                    <p><strong>Ad:</strong> @Model.FirstName</p>
+                    <p><strong>Soyad:</strong> @Model.LastName</p>
+                    <p><strong>E-posta:</strong> @Model.Email</p>
+                    <p><strong>Üyelik Tarihi:</strong> @Model.RegistrationDate.ToShortDateString()</p>
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="EditProfile" class="btn btn-warning">Profili Düzenle</a>
+                        <a asp-action="ChangePassword" class="btn btn-danger">Şifreyi Değiştir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

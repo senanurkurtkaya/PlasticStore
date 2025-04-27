@@ -1,0 +1,22 @@
+﻿@using PlastikMVC.AllDtos.RoleDtos
+@model UpdateRoleModel
+@* ++ Role Views added ONR / 18.01.2025 04:25 *@
+<h1>Edit Roles</h1>
+
+<form asp-controller="Role" asp-action="EditRole" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <div class="form-group">
+        <label for="name">Role Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="@Model.Name" />
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" name="description" value="@Model.Description" />
+    </div>
+    <button type="submit" class="btn btn-success">
+        <i class="bi bi-save"></i> Save
+    </button>
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Cancel
+    </a>
+</form>

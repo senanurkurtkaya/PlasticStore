@@ -1,0 +1,32 @@
+﻿@model PlastikMVC.Models.UnassignRoleViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Rol Geri Alma</h2>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+            }
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+            }
+
+            <form asp-action="UnassignRole" method="post">
+                <input type="hidden" asp-for="UserId" />
+
+                <div class="form-group mb-3">
+                    <label for="RoleId" class="form-label">Geri Alınacak Rol</label>
+                    <select asp-for="RoleId" asp-items="Model.Roles" class="form-select"></select>
+                </div>
+
+                <button type="submit" class="btn btn-danger w-100">Rolü Geri Al</button>
+            </form>
+        </div>
+    </div>
+</div>

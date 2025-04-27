@@ -1,0 +1,37 @@
+﻿/* Ürün detay kartı */
+.product-detail-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ana ürün görseli */
+.product-detail-image {
+    width: 100%;
+    max-width: 100%;
+    min-height: 450px;
+    height: auto;
+    border-radius: 5px;
+    transition: all ease-in-out 300ms;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Küçük resimler galerisi */
+.product-detail-gallery {
+    margin-top: 20px;
+}
+
+.thumbnail-image {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.2s ease-in-out;
+}
+
+    .thumbnail-image:hover {
+        transform: scale(1.1);
+    }

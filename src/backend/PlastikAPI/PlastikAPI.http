@@ -1,0 +1,6 @@
+@PlastikAPI_HostAddress = http://localhost:7006
+
+GET {{PlastikAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

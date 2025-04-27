@@ -1,0 +1,112 @@
+﻿@using PlastikMVC.Models.Product
+@model ProductMetaTagsViewModel
+@{
+    ViewData["Title"] = "MetaTag Düzenle";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center my-4 display-4">MetaTag Güncelle</h2>
+    <hr />
+    <div class="card border-0 shadow-sm w-100">
+        <div class="card-body p-4">
+            <form asp-area="Admin" asp-controller="Product" asp-action="UpdateMetaTag" asp-route-id="@Model.ProductId" method="post" class="needs-validation" novalidate>
+                <input type="hidden" asp-for="ProductId" />
+
+                <div class="row">
+                    <div class="col-3">
+                        <label asp-for="Title"></label>
+                        <input asp-for="Title" class="form-control" required />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-3">
+                        <label asp-for="Description"></label>
+                        <textarea asp-for="Description" class="form-control" required></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-3">
+                        <label asp-for="OpenGraphType"></label>
+                        <input asp-for="OpenGraphType" class="form-control" />
+                        <span asp-validation-for="OpenGraphType" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-3">
+                        <label asp-for="OpenGraphUrl"></label>
+                        <input asp-for="OpenGraphUrl" type="url" class="form-control" />
+                        <span asp-validation-for="OpenGraphUrl" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <hr class="mt-4" />
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <label asp-for="OpenGraphTitle"></label>
+                        <input asp-for="OpenGraphTitle" class="form-control" />
+                        <span asp-validation-for="OpenGraphTitle" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-3">
+                        <label asp-for="OpenGraphDescription"></label>
+                        <textarea asp-for="OpenGraphDescription" class="form-control"></textarea>
+                        <span asp-validation-for="OpenGraphDescription" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-3">
+                        <label asp-for="OpenGraphImage"></label>
+                        <input asp-for="OpenGraphImage" type="url" class="form-control" />
+                        <span asp-validation-for="OpenGraphImage" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-3">
+                        <label asp-for="TwitterCard"></label>
+                        <input asp-for="TwitterCard" class="form-control" />
+                        <span asp-validation-for="TwitterCard" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <hr class="mt-4" />
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <label asp-for="TwitterUrl"></label>
+                        <input asp-for="TwitterUrl" type="url" class="form-control" />
+                        <span asp-validation-for="TwitterUrl" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-3">
+                        <label asp-for="TwitterTitle"></label>
+                        <input asp-for="TwitterTitle" class="form-control" required />
+                        <span asp-validation-for="TwitterTitle" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-3">
+                        <label asp-for="TwitterDescription"></label>
+                        <textarea asp-for="TwitterDescription" class="form-control"></textarea>
+                        <span asp-validation-for="TwitterDescription" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-3">
+                        <label asp-for="TwitterImage"></label>
+                        <input asp-for="TwitterImage" type="url" class="form-control" />
+                        <span asp-validation-for="TwitterImage" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-10">
+                    </div>
+                    <div class="d-flex justify-content-between col-2">
+                        <button type="submit" class="btn btn-primary">Güncelle</button>
+                        <button type="button" class="btn btn-secondary" onclick="window.history.back()">Geri Dön</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

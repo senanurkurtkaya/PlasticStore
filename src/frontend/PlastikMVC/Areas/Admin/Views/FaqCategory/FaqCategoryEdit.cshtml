@@ -1,0 +1,29 @@
+﻿@using PlastikMVC.Client.Models.Request.FaqCategoryRequest
+@model UpdateFaqCategoryRequest
+
+@{
+    ViewData["Title"] = "Kategori Düzenle";
+}
+
+<header class="bg-warning py-4 text-white text-center">
+    <h2>Kategori Düzenle</h2>
+</header>
+
+<div class="container mt-4">
+
+    @if (TempData["FaqCategoryUpdateErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["FaqCategoryUpdateErrorMessage"]</div>
+        TempData["FaqCategoryUpdateErrorMessage"] = null;
+    }
+
+    <form asp-action="FaqCategoryUpdate" method="post">
+        <input type="hidden" asp-for="Id">
+        <div class="mb-3">
+            <label for="name" class="form-label">Kategori Adı</label>
+            <input type="text" class="form-control" id="name" asp-for="Name" required>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="fas fa-edit"></i> Güncelle</button>
+        <a href="@Url.Action("Index")" class="btn btn-secondary">Geri Dön</a>
+    </form>
+</div>

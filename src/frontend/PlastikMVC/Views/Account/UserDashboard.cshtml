@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "User Dashboard";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center">Hoş Geldiniz, @ViewData["UserName"]!</h1>
+    <p class="text-center">Buradan hesabınıza dair bilgileri görüntüleyebilir ve işlemler yapabilirsiniz.</p>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Profil Bilgileri</h5>
+                    <p class="card-text">Hesap bilgilerinizi görüntüleyin ve düzenleyin.</p>
+                    <a href="/Account/Profile" class="btn btn-primary">Profilim</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Mesajlar</h5>
+                    <p class="card-text">Gelen kutunuzu kontrol edin.</p>
+                    <a href="/Messages/Inbox" class="btn btn-primary">Mesajlarım</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Ayarlar</h5>
+                    <p class="card-text">Hesap ayarlarınızı güncelleyin.</p>
+                    <a href="/Account/Settings" class="btn btn-primary">Ayarlar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

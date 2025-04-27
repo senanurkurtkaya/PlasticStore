@@ -1,0 +1,205 @@
+﻿@using PlastikMVC.Client.Models.Response.ProductResponse
+@model PlastikMVC.Models.DashboardViewModel
+@inject IHttpContextAccessor _httpContextAccessor;
+
+@{
+    Layout = "_Layout";
+
+    var token = _httpContextAccessor.HttpContext.Request.Cookies.FirstOrDefault(x => x.Key == "AuthToken").Value;
+    var isAuthenticated = !string.IsNullOrEmpty(token);
+    var top20Products = ViewBag.Top20Products as List<GetTop20ProductResponse>;
+}
+
+<!-- Carousel Start -->
+<div class="container-fluid mb-3">
+    <div class="row px-xl-5">
+        <div class="col-lg-8">
+            <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#header-carousel" data-slide-to="1" class=""></li>
+                    <li data-target="#header-carousel" data-slide-to="2" class=""></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item position-relative active" style="height: 430px;">
+                        <img class="position-absolute w-100 h-100" src="theme-images/first.webp" style="object-fit: cover;">
+                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                            <div class="p-3" style="max-width: 700px;">
+                                <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Dayanıklı. Ekonomik. Çevre Dostu.</h1>
+                                <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Plastik ürünlerde kaliteyi ve uygun fiyatı bir araya getirdik! Geniş ürün yelpazemizle ihtiyacınıza en uygun çözümleri sunuyoruz.</p>
+                                <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="Product">Alışverişe Başla</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item position-relative" style="height: 430px;">
+                        <img class="position-absolute w-100 h-100" src="theme-images/second.webp" style="object-fit: cover;">
+                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                            <div class="p-3" style="max-width: 700px;">
+                                <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Hayatınızı Kolaylaştıran Plastik Ürünler!</h1>
+                                <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Uzun ömürlü, pratik ve şık plastik ürünlerimizle evde, ofiste ve sanayide yanınızdayız. Hemen keşfedin!</p>
+                                <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="Product">Alışverişe Başla</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item position-relative" style="height: 430px;">
+                        <img class="position-absolute w-100 h-100" src="theme-images/third.webp" style="object-fit: cover;">
+                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                            <div class="p-3" style="max-width: 700px;">
+                                <h1 class="display-5 text-white mb-3 animate__animated animate__fadeInDown">Güvenilir Plastik Çözümleri, Tek Tıkla Kapınızda!</h1>
+                                <p class="mx-md-5 px-5 animate__animated animate__bounceIn">
+                                    Kaliteli ve fonksiyonel plastik ürünlere zahmetsizce ulaşın. Sipariş verin, farkı yaşayın!
+                                </p>
+                                <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="Product">Alışverişe Başla</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="product-offer mb-30" style="height: 200px;">
+                <img class="img-fluid" src="theme-images/yemek-ambalaj.jpg" alt="yemek-ambalaj">
+                <div class="offer-text">
+                    <h6 class="text-white text-uppercase">Save 10%</h6>
+                    <h3 class="text-white text-center mb-3">Yemek Paketlerinde İndirim</h3>
+                    <a href="Product" class="btn btn-primary">Ürünlere Gözat</a>
+                </div>
+            </div>
+
+            <div class="product-offer mb-30" style="height: 200px;">
+                <img class="img-fluid" src="theme-images/ambalaj.png" alt="yemek-ambalaj">
+                <div class="offer-text">
+                    <h6 class="text-white text-uppercase">Save 10%</h6>
+                    <h3 class="text-white text-center mb-3">Kağıt Bardaklarda İndirim</h3>
+                    <a href="Product" class="btn btn-primary">Ürünlere Gözat</a>
+                </div>
+            </div>
+   
+        </div>
+    </div>
+</div>
+<!-- Carousel End -->
+
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5 pb-3">
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+                <h5 class="font-weight-semi-bold m-0">Kaliteli Ürün</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+                <h5 class="font-weight-semi-bold m-0">Ücretsiz Kargo</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                <h5 class="font-weight-semi-bold m-0">14 Gün İçinde İade</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                <h5 class="font-weight-semi-bold m-0">24/7 Destek</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hero-section">
+    <div class="text-center">
+        <h1>Plastik Ambalajda Yenilikçi Çözümler</h1>
+        <p>İşiniz için en iyi ambalaj çözümlerini keşfedin. Çevre dostu, dayanıklı ve kaliteli ürünler sunuyoruz.</p>
+        <div class="mt-4">
+            @if (isAuthenticated)
+            {
+                <a asp-controller="Account" asp-action="Logout" class="btn btn-outline-primary">Çıkış Yap</a>
+                <a asp-controller="Account" asp-action="Profile" class="btn btn-primary">Profilim</a>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Giriş Yap</a>
+                <a asp-controller="User" asp-action="Register" class="btn btn-outline-primary">Kayıt Ol</a>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5 pb-3">
+        <div class="col-md-4">
+            <div class="card info-card">
+                <div class="card-body text-center">
+                    <h5>Yüksek Kalite</h5>
+                    <p>Ürünlerimiz her zaman dayanıklı ve yüksek kalitededir.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card info-card">
+                <div class="card-body text-center">
+                    <h5>Çevre Dostu</h5>
+                    <p>Doğaya zarar vermeyen geri dönüştürülebilir çözümler sunuyoruz.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card info-card">
+                <div class="card-body text-center">
+                    <h5>Yenilikçi Tasarım</h5>
+                    <p>Ambalaj sektöründe öncü tasarımlarımızla fark yaratıyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid pt-5 pb-3">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured Products</span></h2>
+    <div class="row px-xl-5">
+        @if (top20Products != null && top20Products.Count > 0) {
+            @foreach(var product in top20Products) {
+
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                    <div class="product-item bg-light mb-4">
+                        <div class="product-img position-relative overflow-hidden">
+                            @if (!string.IsNullOrEmpty(product.PreviewImageUrl))
+                            {
+                                <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.Id">
+                                    <div data-image-src="@product.PreviewImageUrl" style="background-image: url('@product.PreviewImageUrl'); background-size: cover; width: 100%; height:180px;"></div>
+                                </a>
+                            }
+                            else
+                            {
+                                <div class="text-center text-muted" style="height: 180px;text-align: center;display: flex;justify-content: center;align-items: center;">
+                                    <h3>Görsel Yok</h3>
+                                </div>
+                            }
+                        </div>
+                        <div class="text-center py-4">
+                            <a class="h6 text-decoration-none text-truncate" asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.Id">
+                                @product.Name
+                            </a>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <h5>@(product.Price) TL</h5>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mb-1">
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small>(99)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+        
+    </div>
+</div>

@@ -1,0 +1,11 @@
+﻿@using PlastikMVC.Client.Models.Response.CategoryResponse
+@model GetCategoryByIdResponse
+
+<h1>Kategoriyi Sil</h1>
+<p>@Model.Name adlı kategoriyi silmek istediğinize emin misiniz?</p>
+
+<form asp-action="Delete" asp-area="Admin" asp-controller="Category" asp-route-id="@Model.Id" method="post">
+  @*   <input type="hidden" name="id" value="@Model.Id" /> *@
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">Vazgeç</a>
+</form>

@@ -1,0 +1,113 @@
+﻿@using PlastikMVC.Client.Models.Request.ProductRequest
+@using PlastikMVC.Client.Models.Response.ProductResponse
+@model UpdateProductRequest 
+
+
+@{
+    var categories = ViewBag.Categories as List<PlastikMVC.Client.Models.Response.CategoryResponse.GetAllCategoryResponse>;
+}
+<div class="container mt-4">
+    <h1 class="text-center my-4 display-4">Ürün Düzenle</h1>
+    <hr />
+
+    <div class="card shadow-sm p-4">
+        
+
+        @if (ViewBag.Errors != null && ViewBag.Errors.Count > 0) {
+            <div class="alert alert-danger">Form Hatalı</div>
+            <ul>
+                <li>
+                    @foreach (var error in ViewBag.Errors)
+                    {
+                        <span>@error.Key @error.Value</span>
+                    }
+                </li>
+            </ul>
+        }
+        <!-- Form Başlangıcı -->
+        <form asp-action="Update" method="post" asp-route-id="@Model.Id" enctype="multipart/form-data">
+
+            <!-- Ürün Resmi -->
+            <div class="mb-3">
+                <label for="ProductImage" class="form-label">Ürün Resmi:</label>
+                <input type="file" id="ProductImage" name="ProductImages" class="form-control" accept="image/*" />
+            </div>
+
+            <!-- Ürün Adı -->
+            <div class="mb-3">
+                <label for="Name" class="form-label">Ad:</label>
+                <input value="@Model.Name" type="text" id="Name" name="Name" class="form-control" placeholder="Ürün adı giriniz" maxlength="100" required />
+            </div>
+
+            <!-- Ürün Açıklaması -->
+            <div class="mb-3">
+                <label for="Description" class="form-label">Açıklama:</label>
+                <input value="@Model.Description" type="text" id="Description" name="Description" class="form-control" placeholder="Ürün açıklaması giriniz" maxlength="250" required />
+            </div>
+
+            <!-- Ürün Kategorisi -->
+            <div class="mb-3">
+                <label for="CategoryId" class="form-label">Kategori:</label>
+                <select id="CategoryId" name="CategoryId" class="form-select" required>
+                    <option value="" disabled selected>Kategori seçiniz</option>
+                    @if (categories != null && categories.Any())
+                    {
+                        @foreach (var category in categories)
+                        {
+                            if (Model.CategoryId == category.Id)
+                            {
+                                <option value="@category.Id" selected>@category.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <option disabled>Kategoriler yüklenemedi</option>
+                    }
+                </select>
+            </div>
+
+            <!-- Ürün Fiyatı -->
+            <div class="mb-3">
+                <label for="Price" class="form-label">Fiyat:</label>
+                <input value="@Model.Price.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)"
+                       type="number" id="Price" name="Price" class="form-control" min="0" step="0.01"
+                       placeholder="Ürün fiyatını giriniz" required />
+            </div>
+
+            <!-- Ürün Stock -->
+            <div class="mb-3">
+                <label for="StockQuantity" class="form-label">Stok Miktarı:</label>
+                <input value="@Model.StockQuantity"
+                       type="number" id="StockQuantity" name="StockQuantity" class="form-control" min="0" step="1"
+                       placeholder="Ürün stok miktarını giriniz" required />
+            </div>
+
+            <!-- Aktif mi? -->
+            <div class="mb-3">
+                
+                <div class="form-check">
+                    <label class="form-label">Aktif mi?</label>
+                    @Html.EditorFor(x => x.IsActive)
+                </div>
+            </div>
+
+            <!-- Butonlar -->
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary me-2">
+                    <i class="fas fa-save"></i> Kaydet
+                </button>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Vazgeç
+                </a>
+            </div>
+
+        </form>
+        <!-- Form Bitişi -->
+
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@using PlastikMVC.Client.Models.Request.ProductRequest
+@model UpdateProductImageRequest
+
+@{
+    ViewData["Title"] = "Ürün Resmini Düzenle";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">Ürün Resmini Düzenle</h2>
+    <hr />
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+    <div class="card border-0 shadow-sm w-100">
+        <div class="card-body p-4">
+            <form action="@($"/Admin/Product/{Model.ProductId}/UpdateProductImage/{Model.Id}")" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="ProductId" />
+
+                <div class="mb-3">
+                    <label for="ProductImage" class="form-label">Yeni Resim Yükle</label>
+                    <input type="file" id="ProductImage" name="ProductImage" class="form-control" accept="image/*" />
+                </div>
+        
+                <div class="mb-3">
+                    <label asp-for="AltText" class="form-label">Alt Metin</label>
+                    <input asp-for="AltText" class="form-control" required />
+                </div>
+                <div class="form-check mb-3">
+                    <input asp-for="IsPreviewImage" class="form-check-input" type="checkbox" />
+                    <label asp-for="IsPreviewImage" class="form-check-label">Bu resmi önizleme olarak kullan</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Güncelle
+                </button>
+
+                <a href="@($"/Admin/Product/{Model.ProductId}/ProductImages")" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Geri Dön
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

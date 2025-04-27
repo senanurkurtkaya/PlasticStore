@@ -1,0 +1,102 @@
+﻿@using Newtonsoft.Json
+@inject IHttpContextAccessor _httpContextAccessor;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+@{
+    var token = _httpContextAccessor.HttpContext.Request.Cookies.FirstOrDefault(x => x.Key == "AuthToken").Value;
+    var isAuthenticated = !string.IsNullOrEmpty(token);
+
+    var userRolesAsString = _httpContextAccessor.HttpContext.Request.Cookies.FirstOrDefault(x => x.Key == "UserRoles").Value;
+    var userRoles = new List<string>();
+    if (!string.IsNullOrEmpty(userRolesAsString))
+    {
+        userRoles = JsonConvert.DeserializeObject<List<string>>(userRolesAsString);
+    }
+}
+
+<div class="container mt-5">
+    <h1 class="text-center">Hoş Geldiniz, Admin!</h1>
+    <p class="text-center">Sistemi yönetmek için aşağıdaki araçları kullanabilirsiniz.</p>
+    @if (isAuthenticated)
+    {
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="card shadow-lg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Kullanıcı Yönetimi</h5>
+                        <p class="card-text">Kullanıcı hesaplarını yönetin.</p>
+                        <a asp-action="UserList" asp-controller="Account" class="btn btn-primary">Kullanıcı Listesi</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-lg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Rol Yönetimi</h5>
+                        <p class="card-text">Kullanıcı rollerini yönetin.</p>
+                        <a asp-action="Index" asp-controller="Role" class="btn btn-primary">Roller</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-lg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Talep Yönetimi</h5>
+                        <p class="card-text">Talepleri yönetin.</p>
+                        <a asp-area="Admin" asp-action="Index" asp-controller="CustomerService" class="btn btn-primary">Talepler</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-lg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Kategori Yönetimi</h5>
+                        <p class="card-text">Kategorileri yönetin.</p>
+                        <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="btn btn-primary">Kategoriler</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+
+            <div class="col-md-3">
+                <div class="card shadow-lg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Ürün Yönetimi</h5>
+                        <p class="card-text">Ürünleri yönetin.</p>
+                        <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="btn btn-primary">Ürünler</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-lg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">SSS Kategori Yönetimi</h5>
+                        <p class="card-text">SSS Kategorilerini yönetin.</p>
+                        <a asp-area="Admin" asp-controller="FaqCategory" asp-action="Index" class="btn btn-primary">SSS Kategorileri</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-lg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">SSS Yönetimi</h5>
+                        <p class="card-text">SS Soruları yönetin.</p>
+                        <a asp-area="Admin" asp-controller="Faq" asp-action="Index" class="btn btn-primary">SSS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+    }
+</div>

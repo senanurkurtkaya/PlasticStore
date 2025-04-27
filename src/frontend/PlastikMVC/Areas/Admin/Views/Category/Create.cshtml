@@ -1,0 +1,57 @@
+﻿@using PlastikMVC.Dtos.CategoryDto
+
+@{
+    ViewBag.Title = "Yeni Kategori Ekle";
+}
+
+@section head {
+    <link href="~/css/create-category.css" rel="stylesheet" asp-append-version="true" />
+}
+
+
+    <h1 class="text-center my-4 display-5 text-primary">Yeni Kategori Ekle</h1>
+
+    <div class="container">
+        <form asp-action="Create" method="post" class="category-form">
+            <!-- Özel simge -->
+            <div class="category-icon">
+                <i class="bi bi-box"></i>
+            </div>
+
+            <!-- Kategori Adı -->
+            <div class="form-group mb-4">
+                <label for="Name" class="form-label">Kategori Adı</label>
+                <input type="text" id="Name" name="Name" class="form-control form-control-lg border"
+                       placeholder="Kategori adı giriniz" required />
+            </div>
+
+            <!-- Açıklama -->
+            <div class="form-group mb-4">
+                <label for="Description" class="form-label">Açıklama</label>
+                <textarea id="Description" name="Description" rows="3"
+                          class="form-control form-control-lg border"
+                          placeholder="Açıklama giriniz" required
+                          oninvalid="this.setCustomValidity('Lütfen açıklama alanını doldurunuz.')"
+                          oninput="this.setCustomValidity('')"></textarea>
+            </div>
+
+            <!-- Aktif Mi? -->
+            <div class="form-group mb-4">
+                <label class="form-label">Aktif Mi?</label>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="IsActiveYes" name="IsActive" value="true" class="form-check-input" required />
+                    <label for="IsActiveYes" class="form-check-label">Evet</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="IsActiveNo" name="IsActive" value="false" class="form-check-input" required />
+                    <label for="IsActiveNo" class="form-check-label">Hayır</label>
+                </div>
+            </div>
+
+            <!-- Butonlar -->
+            <div class="d-flex justify-content-between mt-5">
+                <button type="submit" class="btn btn-success btn-lg px-5 shadow-sm">Kaydet</button>
+                <a asp-action="Index" class="btn btn-outline-secondary btn-lg px-5 shadow-sm">Geri</a>
+            </div>
+        </form>
+    </div>

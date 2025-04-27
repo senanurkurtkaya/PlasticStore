@@ -1,0 +1,26 @@
+﻿@model PlastikMVC.Models.AssignRoleViewModel
+
+<h2>Rol Atama</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<form asp-action="AssignRole" method="post">
+    <div class="form-group">
+        <label for="UserId">Kullanıcı ID</label>
+        <input asp-for="UserId" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label for="RoleId">Rol Seç</label>
+        <select asp-for="RoleId" class="form-control" asp-items="Model.Roles">
+            <option value="">Rol seçin</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Rol Ata</button>
+</form>
